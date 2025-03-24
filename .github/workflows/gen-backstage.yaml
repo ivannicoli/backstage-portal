@@ -1,0 +1,17 @@
+name: Docker buid an image and publish to docker Hub
+on:
+  [workflow_dispatch]
+jobs:
+  publish_images:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4
+      - name: push image to docker hub
+        run: |
+            npx @backstage/create-app --defaults
+            git config --global user.email "action@github.com"
+            git config --global user.name "github-actions"
+            git add .
+            git commit -m "Criado novo backstage app com defaults via workflow"
+            git push origin HEAD:${{ github.ref }}
