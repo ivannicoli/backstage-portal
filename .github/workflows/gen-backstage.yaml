@@ -9,9 +9,9 @@ jobs:
         uses: actions/checkout@v4
       - name: push image to docker hub
         run: |
-            npx @backstage/create-app --defaults
+            npx @backstage/create-app
             git config --global user.email "action@github.com"
             git config --global user.name "github-actions"
             git add .
-            git commit -m "Criado novo backstage app com defaults via workflow"
+            git commit -m "Criado novo backstage app sem defaults via workflow"
             git push origin HEAD:${{ github.ref }}
